@@ -1,0 +1,2 @@
+localization:
+	php artisan localization;
