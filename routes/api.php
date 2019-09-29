@@ -21,6 +21,8 @@ Route::resource('categories', 'Categories\CategoryController', [
 
 Route::resource('products', 'Products\ProductController');
 
+Route::get('navigators', 'API\CommonController@getNavigators');
+
 Route::group(['prefix' => 'auth'], function () {
     Route::post('login', 'API\AuthController@login');
     Route::post('signup', 'API\AuthController@signup');
@@ -30,6 +32,14 @@ Route::group(['prefix' => 'auth'], function () {
         Route::get('logout', 'API\AuthController@logout');
         Route::get('user', 'API\AuthController@user');
         Route::get('users', 'API\AuthController@users');
+        Route::put('user', 'API\AuthController@updateUser');
+        Route::post('user', 'API\AuthController@signup');
+        Route::delete('user', 'API\AuthController@delUser');
+
+        Route::group(['prefix' => 'admin'], function () {
+        	Route::get('categories', 'API\CommonController@getCategories');
+        	Route::post('category', 'API\AdminController@addCategory');
+		});
     });
 });
 

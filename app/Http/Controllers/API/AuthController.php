@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\ResponseFactory;
 use Illuminate\Support\Carbon;
 
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Auth;
 //use Request;
@@ -41,7 +43,9 @@ class AuthController extends Controller
 //        Storage::put('avatars/'.$user->id.'/avatar.png', (string) $avatar);
         $user->notify(new SignupActivate());
         return response()->json([
-            'message' => 'Successfully created user!'
+            'data' => [
+				'message' => 'Successfully created user!'
+			]
         ], 201);
     }
 
@@ -59,8 +63,10 @@ class AuthController extends Controller
             'remember_me' => 'boolean'
         ]);
         $credentials = request(['email', 'password']);
+//        $credentials['password'] = Hash::make(data_get($credentials, 'password'));
         $credentials['active'] = 1;
         $credentials['deleted_at'] = null;
+		Log::warning($credentials);
 
         if(!Auth::attempt($credentials))
             return response()->json([
@@ -125,4 +131,35 @@ class AuthController extends Controller
         $user->save();
         return $user;
     }
+
+	public function updateUser(Request $request)
+	{
+		try {
+			$request->validate([
+				'email' => 'required|string|email',
+				'password' => 'required|string',
+				'remember_me' => 'boolean'
+			]);
+
+			User::find($request->input('id'))->update([
+				'email' => $request->email,
+				'password' => bcrypt($request->password),
+				'name' => $request->name
+			]);
+		} catch (\Exception $ex) {
+			Log::info($ex);
+			throw $ex;
+		}
+	}
+
+	public function delUser(Request $request) {
+		try {
+			$id = $request->input('user_id');
+			User::destroy($id);
+			return ['message' => 'delete succeeded'];
+		} catch (\Exception $ex) {
+			Log::info($ex);
+			throw $ex;
+		}
+	}
 }
