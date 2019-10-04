@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Log;
 
 class BuildApiResponse
 {
@@ -25,10 +26,11 @@ class BuildApiResponse
 //		}
 
 		$original = $response->getOriginalContent();
+		Log::warning($original);
 
-//		if (!empty(data_get($original, 'exception'))) {
-//			return response()->json(['error' => data_get($original, 'message')], $response->status());
-//		}
+		if (!empty(data_get($original, 'exception'))) {
+			return response()->json(['error' => data_get($original, 'message')], $response->status());
+		}
 //
 //		if (!empty(data_get($original, 'errors'))) {
 //			return response()->json($original, $response->status());

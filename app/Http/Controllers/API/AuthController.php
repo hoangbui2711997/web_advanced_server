@@ -137,8 +137,8 @@ class AuthController extends Controller
 		try {
 			$request->validate([
 				'email' => 'required|string|email',
-				'password' => 'required|string',
-				'remember_me' => 'boolean'
+				'password' => 'required|string'
+//				'remember_me' => 'boolean'
 			]);
 
 			User::find($request->input('id'))->update([
@@ -146,6 +146,8 @@ class AuthController extends Controller
 				'password' => bcrypt($request->password),
 				'name' => $request->name
 			]);
+
+			return [ 'message' => 'update succeed'];
 		} catch (\Exception $ex) {
 			Log::info($ex);
 			throw $ex;
