@@ -15,9 +15,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('categories', 'Categories\CategoryController', [
+Route::resource('categories', 'API\CategoryController', [
     'only' => ['index']
 ]);
+
+Route::get('countries', 'API\CountryController@index');
+Route::get('country/{country}', 'API\CountryController@show');
+Route::get('addresses', 'API\AddressController@index');
+Route::get('address/{address}', 'API\AddressController@show');
+Route::resource('orders', 'API\OrderController');
 
 Route::resource('products', 'Products\ProductController');
 
@@ -54,3 +60,13 @@ Route::group([
 });
 
 Route::get('test-users', 'API\AuthController@users');
+Route::get('apis', 'API\CommonController@showAPIs');
+
+Route::group(['prefix' => 'admin'], function () {
+	Route::get('categories', 'API\CommonController@getCategories');
+	Route::post('category', 'API\AdminController@addCategory');
+});
+
+Route::resource('cart', 'API\CartController')->only([
+	'store'
+]);

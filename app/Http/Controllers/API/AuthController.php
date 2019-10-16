@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\ResponseFactory;
 use Illuminate\Support\Carbon;
 
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
@@ -66,7 +67,6 @@ class AuthController extends Controller
 //        $credentials['password'] = Hash::make(data_get($credentials, 'password'));
         $credentials['active'] = 1;
         $credentials['deleted_at'] = null;
-		Log::warning($credentials);
 
         if(!Auth::attempt($credentials))
             return response()->json([
@@ -114,7 +114,7 @@ class AuthController extends Controller
 
     public function users(Request $request)
     {
-        list('page' => $page, 'limit' => $limit) = $request->only(['page', 'limit']);
+        $limit = $request->input('limit', 10);
         return response()->json(User::paginate($limit));
     }
 

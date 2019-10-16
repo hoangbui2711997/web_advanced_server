@@ -20,7 +20,6 @@ class AdminController extends Controller
 	public function addCategory(Request $request)
 	{
 		try {
-			Log::warning($request->all());
 			return response()->json($this->adminService->addCategory($request));
 		} catch (\Exception $exception) {
 			Log::info($exception);

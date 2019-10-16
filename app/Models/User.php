@@ -48,6 +48,17 @@ class User extends Authenticatable
     /**
      * @var array
      */
+	public function cart()
+	{
+		return $this->belongsToMany(ProductVariation::class, 'cart_user')
+			->withPivot('quantity')
+			->withTimestamps();
+	}
+
+	public function addresses()
+	{
+		return $this->hasMany(Address::class);
+	}
 //
 //    protected $appends = ['avatar_url'];
 //

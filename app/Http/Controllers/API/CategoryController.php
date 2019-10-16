@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Categories;
+namespace App\Http\Controllers\API;
 
 use App\Http\Resources\CategoryResource;
+use App\Http\Resources\ProductResource;
 use App\Models\Category;
-use Illuminate\Http\Request;
+use App\Models\Product;
 use App\Http\Controllers\Controller;
 
 class CategoryController extends Controller
@@ -15,4 +16,11 @@ class CategoryController extends Controller
             Category::parents()->ordered()->get()
         );
     }
+
+	public function show(Product $product)
+	{
+		return new ProductResource(
+			$product
+		);
+	}
 }

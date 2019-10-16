@@ -26,7 +26,7 @@ class BuildApiResponse
 //		}
 
 		$original = $response->getOriginalContent();
-		Log::warning($original);
+//		Log::warning($original);
 
 		if (!empty(data_get($original, 'exception'))) {
 			return response()->json(['error' => data_get($original, 'message')], $response->status());
