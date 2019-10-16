@@ -4,6 +4,7 @@
 /storage/*.key
 /vendor
 /web_advanced_client_z
+/.idea
 .env
 .env.backup
 .phpunit.result.cache
