@@ -14,11 +14,11 @@ class ProductResource extends JsonResource
      */
     public function toArray($request)
     {
-        return array_merge(parent::toArray($request), [
-        	'price' => $this->formattedPrice,
-            'variations' => ProductVariationResource::collection(
-				$this->variations
-			)->collection->groupBy('type.name')
-        ]);
+//        return array_merge(parent::toArray($request), [
+//        	'price' => $this->formattedPrice,
+//            'variations' => ProductVariationResource::collection(
+//				$this->variations
+//			)->collection->groupBy('type.name')
+//        ]);
     }
 }

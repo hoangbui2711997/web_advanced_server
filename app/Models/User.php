@@ -37,14 +37,11 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
-
+	protected $dateFormat = 'Y-m-d H:i:s';
     /**
      * @var array
      */
-    protected $dates = ['deleted_at'];
+//    protected $dates = ['deleted_at'];
     /**
      * @var array
      */

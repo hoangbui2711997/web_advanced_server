@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Horizon\Horizon;
 use App\Card\Cart;
@@ -19,6 +20,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+//		Schema::defaultStringLength(191);
     	$this->app->singleton(Cart::class, function ($app) {
     		return new Cart($app->auth->user());
 		});

@@ -11,7 +11,7 @@ class CommonService
 
 	public function getNavigators()
 	{
-		return Navigator::whereNull('parent_id')->orderBy('order')->get();
+		return Navigator::whereNull('parent_id')->orderBy('order')->paginate(3);
 	}
 
 	public function getCategories()

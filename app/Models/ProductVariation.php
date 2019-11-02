@@ -2,65 +2,27 @@
 
 namespace App\Models;
 
-use App\Card\Money;
-use App\Models\Traits\HasPrice;
-use Illuminate\Database\Eloquent\Model;
+use App\Custom\CustomModel;
 
-class ProductVariation extends Model
+use App\Models\Traits\HasStorageInfo;
+
+class ProductVariation extends CustomModel
 {
-    use HasPrice;
+	use HasStorageInfo;
+	protected $with = ['vase', 'images'];
 
-	public function type()
+	public function product(): \Illuminate\Database\Eloquent\Relations\BelongsTo
 	{
-		return $this->hasOne(ProductVariationType::class, 'id', 'type_id');
+		return $this->belongsTo(Product::class, 'product_id');
 	}
 
-	public function getPriceAttribute($value)
+	public function vase(): \Illuminate\Database\Eloquent\Relations\BelongsTo
 	{
-		if ($value === null) {
-			return $this->product->price;
-		}
-
-		return new Money($value);
+		return $this->belongsTo(Vase::class, 'vase_id');
 	}
 
-	public function priceVaries()
+	public function images(): \Illuminate\Database\Eloquent\Relations\HasMany
 	{
-		return $this->price->amount() !== $this->product->price->amount();
-	}
-
-	public function product()
-	{
-		return $this->belongsTo(Product::class);
-	}
-
-	public function stocks()
-	{
-		return $this->hasMany(Stock::class);
-	}
-
-	public function stock()
-	{
-		return $this->belongsToMany(
-			ProductVariation::class, 'product_variation_stock_view'
-		)
-			->withPivot(
-				['stock', 'in_stock']
-			);
-	}
-
-	public function stockCount()
-	{
-		return $this->stock->sum('pivot.stock');
-	}
-
-	public function inStock()
-	{
-		return $this->stockCount() > 0;
-	}
-
-	public function orders()
-	{
-		return $this->belongsToMany(Order::class);
+		return $this->hasMany(FlowerImage::class);
 	}
 }

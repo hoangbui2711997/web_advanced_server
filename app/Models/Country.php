@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Custom\CustomModel;
 
-class Country extends Model
+class Country extends CustomModel
 {
     //
 	public $timestamps = false;

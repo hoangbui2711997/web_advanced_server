@@ -25,7 +25,10 @@ Route::get('addresses', 'API\AddressController@index');
 Route::get('address/{address}', 'API\AddressController@show');
 Route::resource('orders', 'API\OrderController');
 
+Route::post('products/addToCart', 'Products\ProductController@addToCart');
 Route::resource('products', 'Products\ProductController');
+Route::get('zipcode/{id}', 'Products\ProductController@getZipcode');
+//Route::get('custom-products', 'Products\ProductController@show');
 
 Route::get('navigators', 'API\CommonController@getNavigators');
 
@@ -41,6 +44,7 @@ Route::group(['prefix' => 'auth'], function () {
         Route::put('user', 'API\AuthController@updateUser');
         Route::post('user', 'API\AuthController@signup');
         Route::delete('user', 'API\AuthController@delUser');
+        Route::get('products', 'API\AuthController@getProducts');
 
         Route::group(['prefix' => 'admin'], function () {
         	Route::get('categories', 'API\CommonController@getCategories');

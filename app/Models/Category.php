@@ -2,26 +2,9 @@
 
 namespace App\Models;
 
-use App\Models\Traits\HasChildren;
-use App\Models\Traits\isOrdered;
-use Illuminate\Database\Eloquent\Model;
+use App\Custom\CustomModel;
 
-class Category extends Model
+class Category extends CustomModel
 {
-    use HasChildren, isOrdered;
-    protected $fillable = [
-        'name',
-        'slug',
-        'order'
-    ];
-
-    public function children()
-    {
-        return $this->hasMany(Category::class, 'parent_id', 'id');
-    }
-
-	public function products()
-	{
-		return $this->belongsToMany(Product::class);
-	}
+    //
 }

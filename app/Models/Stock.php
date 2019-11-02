@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Custom\CustomModel;
 
-class Stock extends Model
+class Stock extends CustomModel
 {
     //
 }

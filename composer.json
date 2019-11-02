@@ -9,13 +9,14 @@
     "license": "MIT",
     "require": {
         "php": "^7.2",
+        "ext-intl": "*",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^6.0",
         "laravel/tinker": "^1.0",
         "martinlindhe/laravel-vue-i18n-generator": "^0.1.40",
         "moneyphp/money": "^3.2",
-		"ext-intl": "*"
-	},
+        "yajra/laravel-datatables-oracle": "^9.7"
+    },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
         "beyondcode/laravel-dump-server": "^1.3",

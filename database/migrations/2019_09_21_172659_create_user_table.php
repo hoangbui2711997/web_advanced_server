@@ -35,8 +35,6 @@ class CreateUserTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
-        });
+        \Illuminate\Support\Facades\Schema::dropIfExists('users');
     }
 }

@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Custom\CustomModel;
 
-class PasswordReset extends Model
+class PasswordReset extends CustomModel
 {
 	//
 	protected $fillable = [

@@ -11,6 +11,7 @@ $factory->define(Navigator::class, function (Faker $faker) {
 		'link' => $faker->url,
 		'icon' => $faker->url,
 		'title' => $faker->title,
+		'slug' => $faker->slug,
 		'level' => $faker->randomNumber(1),
 		'created_at' => $faker->dateTime,
 		'updated_at' => $faker->dateTime,

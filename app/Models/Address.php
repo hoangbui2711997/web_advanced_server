@@ -2,13 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Custom\CustomModel;
 
-class Address extends Model
+class Address extends CustomModel
 {
     //
-	public function user()
-	{
-		return $this->belongsTo(User::class);
-	}
 }

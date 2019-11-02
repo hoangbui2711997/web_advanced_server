@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use App\Notifications\SignupActivate;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
@@ -65,9 +66,8 @@ class AuthController extends Controller
         ]);
         $credentials = request(['email', 'password']);
 //        $credentials['password'] = Hash::make(data_get($credentials, 'password'));
-        $credentials['active'] = 1;
-        $credentials['deleted_at'] = null;
-
+//        $credentials['active'] = 1;
+//        $credentials['deleted_at'] = null;
         if(!Auth::attempt($credentials))
             return response()->json([
                 'message' => 'Unauthorized'
@@ -163,5 +163,11 @@ class AuthController extends Controller
 			Log::info($ex);
 			throw $ex;
 		}
+	}
+
+	public function getProducts(Request $request)
+	{
+		$limit = $request->input('limit', 10);
+		return Product::paginate($limit);
 	}
 }
