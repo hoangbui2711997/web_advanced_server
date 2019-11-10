@@ -1,0 +1,51 @@
+[
+  {
+    "id": 1,
+    "url": "/admin",
+    "view": "admin",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2,
+    "url": "/cart",
+    "view": "cart",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 3,
+    "url": "/categories",
+    "view": "categories",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 4,
+    "url": "/auth/login",
+    "view": "auth-login",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 5,
+    "url": "/auth/register",
+    "view": "auth-register",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 6,
+    "url": "/products/:slug?",
+    "view": "products-slug",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 7,
+    "url": "/",
+    "view": "index",
+    "created_at": null,
+    "updated_at": null
+  }
+]

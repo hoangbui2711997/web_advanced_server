@@ -28,6 +28,9 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
         Passport::routes();
         Passport::useTokenModel(CustomToken::class);
+        Gate::define('edit-settings', function ($user) {
+        	return $user;
+		});
 //        Passport::loadKeysFrom('./storage');
 
 //        Custom time expired for token

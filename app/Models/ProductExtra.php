@@ -21,7 +21,7 @@ class ProductExtra extends CustomModel
 		return $this->hasMany(ProductExtraVariation::class);
 	}
 
-	public function unit()
+	public function unit(): \Illuminate\Database\Eloquent\Relations\BelongsTo
 	{
 		return $this->belongsTo(Unit::class, 'unit_id');
 	}

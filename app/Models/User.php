@@ -19,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'active', 'activation_token', 'avatar'
+        'name', 'email', 'password', 'active', 'activation_token', 'avatar', 'role_id'
     ];
 
     /**
@@ -45,16 +45,21 @@ class User extends Authenticatable
     /**
      * @var array
      */
-	public function cart()
-	{
-		return $this->belongsToMany(ProductVariation::class, 'cart_user')
-			->withPivot('quantity')
-			->withTimestamps();
-	}
+//	public function cart()
+//	{
+//		return $this->belongsToMany(ProductVariation::class, 'cart_user')
+//			->withPivot('quantity')
+//			->withTimestamps();
+//	}
 
 	public function addresses()
 	{
 		return $this->hasMany(Address::class);
+	}
+
+	public function cart()
+	{
+		return $this->hasMany(Cart::class);
 	}
 //
 //    protected $appends = ['avatar_url'];
@@ -63,4 +68,9 @@ class User extends Authenticatable
 //    {
 //        return Storage::url('avatars/'.$this->id.'/'.$this->avatar);
 //    }
+
+	public function isAdmin()
+	{
+
+	}
 }

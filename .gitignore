@@ -5,6 +5,7 @@
 /vendor
 /web_advanced_client_z
 /.idea
+/support_me
 .env
 .env.backup
 .phpunit.result.cache

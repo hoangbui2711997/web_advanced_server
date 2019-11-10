@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCartsTable extends Migration
+class CreateUserControlsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,13 @@ class CreateCartsTable extends Migration
      */
     public function up()
     {
-        Schema::create('carts', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('user_controls', function (Blueprint $table) {
 			$table->unsignedBigInteger('user_id');
-			$table->decimal('total', 30);
+			$table->unsignedBigInteger('control_id');
+			$table->foreign('user_id')->references('id')->on('users');
+			$table->foreign('control_id')->references('id')->on('controls');
+            $table->primary(['user_id', 'control_id']);
             $table->timestamps();
-
-			$table->foreign('user_id')
-				->references('id')
-				->on('users');
         });
     }
 
@@ -32,7 +30,6 @@ class CreateCartsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_in_carts');
-        Schema::dropIfExists('carts');
+        Schema::dropIfExists('user_controls');
     }
 }

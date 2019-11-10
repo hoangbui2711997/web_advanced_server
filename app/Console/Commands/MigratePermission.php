@@ -4,14 +4,14 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
-class RefreshDatabase extends Command
+class MigratePermission extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'custom:refresh';
+    protected $signature = 'custom:migrate:permission';
 
     /**
      * The console command description.
@@ -37,14 +37,17 @@ class RefreshDatabase extends Command
      */
     public function handle()
     {
-		$this->call('migrate:rollback', ['--step' => '1000']);
-		$this->call('migrate');
-		$this->call('passport:install', ['--force']);
-		$this->call('custom:migrate:unit');
-    	$this->call('custom:migrate:zip_code');
-    	$this->call('custom:migrate:product_extra');
-    	$this->call('custom:migrate:role');
-    	$this->call('custom:migrate:permission');
-		$this->call('db:seed');
+		$items = json_decode(file_get_contents(base_path() . '/database/migrations/data/flowers_dbo_permissions.json'));
+		$records = [];
+		foreach ($items as $item) {
+			$records[] = [
+				'name' => $item->name,
+				'code' => $item->code,
+				'created_at' => $item->created_at,
+				'updated_at' => $item->updated_at,
+			];
+		}
+
+		DB::table('roles')->insert($records);
     }
 }

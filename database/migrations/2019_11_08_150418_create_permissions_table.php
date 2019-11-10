@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProductInCartsTable extends Migration
+class CreatePermissionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,11 @@ class CreateProductInCartsTable extends Migration
      */
     public function up()
     {
-        Schema::create('product_in_carts', function (Blueprint $table) {
+        Schema::create('permissions', function (Blueprint $table) {
             $table->bigIncrements('id');
-			$table->unsignedBigInteger('cart_id');
-			$table->decimal('total', 30);
-
+			$table->string('url', 2000);
+			$table->string('view', 2000)->default('');
             $table->timestamps();
-
-			$table->foreign('cart_id')->references('id')->on('carts');
         });
     }
 
@@ -31,6 +28,6 @@ class CreateProductInCartsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_in_cards');
+        Schema::dropIfExists('permissions');
     }
 }

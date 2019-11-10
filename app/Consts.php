@@ -22,4 +22,16 @@ class Consts
 	public static $COLLECTION_QUANTITY = [1, 2, 3];
 
 	public static $COLLECTION_EXTRAS = ['mylar balloons', 'stuffed animal', 'chocolates'];
+
+	public static $DECORATIONS = [
+		'products' => 'name',
+		'product_variations' => 'color',
+		'product_extra_variations' => 'amount',
+		'vases' => 'name',
+		'vase_variations' => 'size',
+	];
+
+	public static $ROLE_ADMIN = 1;
+	public static $ROLE_EMPLOYEE = 2;
+	public static $ROLE_USER = 3;
 }

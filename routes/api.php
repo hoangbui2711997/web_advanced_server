@@ -25,7 +25,11 @@ Route::get('addresses', 'API\AddressController@index');
 Route::get('address/{address}', 'API\AddressController@show');
 Route::resource('orders', 'API\OrderController');
 
-Route::post('products/addToCart', 'Products\ProductController@addToCart');
+Route::group(['middleware' => 'auth:api'], function() {
+	Route::post('products/add-to-cart', 'Products\ProductController@addToCart');
+	Route::get('products/cart-info', 'Products\ProductController@getCartInfo');
+	Route::delete('products/cart', 'Products\ProductController@removeProductInCart');
+});
 Route::resource('products', 'Products\ProductController');
 Route::get('zipcode/{id}', 'Products\ProductController@getZipcode');
 //Route::get('custom-products', 'Products\ProductController@show');

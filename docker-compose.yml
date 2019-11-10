@@ -1,0 +1,62 @@
+version: '2'
+
+services:
+ mssql:
+  image: 'mcr.microsoft.com/mssql/server:2017-latest-ubuntu'
+  environment:
+   - ACCEPT_EULA=Y
+   - SA_PASSWORD=hH123456
+   - MSSQL_PID=Express
+  ports:
+   - 8888:1433
+ # mariadb:
+ #  image: 'bitnami/mariadb:10.1'
+ #  environment:
+ #   - ALLOW_EMPTY_PASSWORD=yes
+ #   - MARIADB_USER=my_user
+ #   - MARIADB_DATABASE=my_database
+ #   - MARIADB_PASSWORD=my_password
+ redis:
+  image: "redis:alpine"
+  ports:
+    - "6797:6379"
+ back-end:
+  tty: true
+  container_name: web_advanced_server
+#  image: bitnami/laravel:6-debian-9
+  build: ./docker
+  #  environment:
+  #   - DB_HOST=mariadb
+  #   - DB_USERNAME=my_user
+  #   - DB_DATABASE=my_database
+  #   - DB_PASSWORD=my_password
+  depends_on:
+   - mssql
+   - redis
+  links:
+    - redis
+  ports:
+   - 8011:8000
+  working_dir: /app
+  volumes:
+   - ./:/app
+#  command: cd /app && composer install && php artisan serve
+
+ front-end:
+  container_name: web_advanced_frontend
+  image: 'node:alpine'
+  volumes:
+    - ./web_advanced_client_z:/app
+#  depends_on:
+#    - back-end
+  ports:
+    - 3333:3333
+  working_dir: /app
+  environment:
+    NODE_ENV: development
+#  command: cd /app && npm install && npm run dev
+#  links:
+#    - back-end
+#  command:
+#    "npm run dev"
+  # privileged: true # Privileged mode could be required to run this container under Windows

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cart;
 use App\Models\Product;
 use App\Notifications\SignupActivate;
 use App\Models\User;
@@ -12,6 +13,7 @@ use Illuminate\Routing\ResponseFactory;
 use Illuminate\Support\Carbon;
 
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
@@ -37,18 +39,28 @@ class AuthController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
-            'activation_token' => Str::random(60)
+            'activation_token' => Str::random(60),
+			'role_id' => 2,
         ]);
-        $user->save();
-
+		try {
+			DB::beginTransaction();
+			$user->save();
+			$cart = new Cart(['user_id' => $user->id, 'total' => 0]);
+			$cart->save();
 //        $avatar = Avatar::create($user->name)->getImageObject()->encode('png');
 //        Storage::put('avatars/'.$user->id.'/avatar.png', (string) $avatar);
-        $user->notify(new SignupActivate());
-        return response()->json([
-            'data' => [
-				'message' => 'Successfully created user!'
-			]
-        ], 201);
+			$user->notify(new SignupActivate());
+			DB::commit();
+			return response()->json([
+				'data' => [
+					'message' => 'Successfully created user!'
+				]
+			], 201);
+		} catch (\Exception $exception) {
+			Log::error($exception);
+			DB::rollBack();
+			throw $exception;
+		}
     }
 
     /**
