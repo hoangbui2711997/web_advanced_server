@@ -16,12 +16,12 @@ class CreateStockProductsTable extends Migration
         Schema::create('stock_products', function (Blueprint $table) {
             $table->bigIncrements('id');
 			$table->unsignedInteger('amount');
-			$table->unsignedBigInteger('stock_id');
+			$table->unsignedBigInteger('stock_id')->nullable();
 			$table->string('object_reference_type');
 			$table->string('object_reference_id');
             $table->timestamps();
 
-			$table->foreign('stock_id')->references('id')->on('stocks');
+			$table->foreign('stock_id')->references('id')->on('stocks')->onDelete('cascade');
         });
     }
 

@@ -21,8 +21,6 @@ class CreateUserTable extends Migration
             $table->boolean('active')->default(false);
             $table->string('activation_token');
             $table->string('avatar')->default('avatar.png');
-			$table->unsignedBigInteger('role_id');
-			$table->foreign('role_id')->references('id')->on('roles');
 
             $table->rememberToken();
             $table->timestamps();

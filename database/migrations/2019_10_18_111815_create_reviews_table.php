@@ -19,12 +19,12 @@ class CreateReviewsTable extends Migration
 			$table->text('content');
 			$table->unsignedTinyInteger('rate');
 
-			$table->unsignedBigInteger('user_id');
-			$table->unsignedBigInteger('product_variation_id');
+			$table->unsignedBigInteger('user_id')->nullable();
+			$table->unsignedBigInteger('product_variation_id')->nullable();
             $table->timestamps();
 
-			$table->foreign('user_id')->references('id')->on('users');
-			$table->foreign('product_variation_id')->references('id')->on('product_variations');
+			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+			$table->foreign('product_variation_id')->references('id')->on('product_variations')->onDelete('cascade');
         });
     }
 

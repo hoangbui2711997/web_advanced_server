@@ -18,11 +18,11 @@ class CreateBranchTablesTable extends Migration
             $table->string('object_reference_type');
             $table->string('object_reference_id');
 			$table->unsignedInteger('amount');
-            $table->unsignedBigInteger('branch_id');
-            $table->unsignedBigInteger('id_object');
+            $table->unsignedBigInteger('branch_id')->nullable();
+            $table->unsignedBigInteger('id_object')->nullable();
 
             $table->timestamps();
-            $table->foreign('branch_id')->references('id')->on('branches');
+            $table->foreign('branch_id')->references('id')->on('branches')->onDelete('cascade');
 
         });
     }

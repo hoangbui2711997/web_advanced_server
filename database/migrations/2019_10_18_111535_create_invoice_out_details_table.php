@@ -15,13 +15,13 @@ class CreateInvoiceOutDetailsTable extends Migration
     {
         Schema::create('invoice_out_details', function (Blueprint $table) {
             $table->bigIncrements('id');
-			$table->unsignedBigInteger('invoice_out_id');
-			$table->unsignedBigInteger('product_id');
+			$table->unsignedBigInteger('invoice_out_id')->nullable();
+			$table->unsignedBigInteger('product_id')->nullable();
 			$table->unsignedInteger('amount');
             $table->timestamps();
 
-			$table->foreign('invoice_out_id')->references('id')->on('invoice_outs');
-			$table->foreign('product_id')->references('id')->on('products');
+			$table->foreign('invoice_out_id')->references('id')->on('invoice_outs')->onDelete('cascade');
+			$table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });
     }
 

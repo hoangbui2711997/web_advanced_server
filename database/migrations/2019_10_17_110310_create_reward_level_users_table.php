@@ -15,12 +15,12 @@ class CreateRewardLevelUsersTable extends Migration
     {
         Schema::create('reward_level_users', function (Blueprint $table) {
             $table->bigIncrements('id');
-			$table->unsignedBigInteger('user_id');
-			$table->unsignedBigInteger('level_id');
+			$table->unsignedBigInteger('user_id')->nullable();
+			$table->unsignedBigInteger('level_id')->nullable();
             $table->timestamps();
 
-			$table->foreign('user_id')->references('id')->on('users');
-			$table->foreign('level_id')->references('id')->on('levels');
+			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+			$table->foreign('level_id')->references('id')->on('levels')->onDelete('cascade');
         });
     }
 

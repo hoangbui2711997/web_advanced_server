@@ -17,10 +17,10 @@ class CreateFlowerImagesTable extends Migration
             $table->bigIncrements('id');
             $table->string('image_url', 2000);
             $table->text('description');
-            $table->unsignedBigInteger('product_variation_id');
+            $table->unsignedBigInteger('product_variation_id')->nullable();
 
             $table->timestamps();
-            $table->foreign('product_variation_id')->references('id')->on('product_variations');
+            $table->foreign('product_variation_id')->references('id')->on('product_variations')->onDelete('cascade');
         });
     }
 

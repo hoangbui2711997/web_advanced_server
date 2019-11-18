@@ -18,10 +18,10 @@ class CreateRemindsTable extends Migration
 			$table->string('occasion');
 			$table->dateTime('date');
 
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
 
-			$table->foreign('user_id')->references('id')->on('users');
+			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

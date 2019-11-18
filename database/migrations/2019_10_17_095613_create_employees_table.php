@@ -25,8 +25,8 @@ class CreateEmployeesTable extends Migration
 			$table->bigInteger('address_id')->unsigned();
             $table->timestamps();
 
-            $table->foreign('branch_id')->references('id')->on('branches');
-            $table->foreign('address_id')->references('id')->on('addresses');
+            $table->foreign('branch_id')->references('id')->on('branches')->onDelete('cascade');
+            $table->foreign('address_id')->references('id')->on('addresses')->onDelete('cascade');
         });
     }
 

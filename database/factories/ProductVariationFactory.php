@@ -8,12 +8,14 @@ use App\Models\ProductVariation;
 use Faker\Generator as Faker;
 
 $factory->define(ProductVariation::class, function (Faker $faker) {
+	\App\Utils::loadImageFromStore();
+
     return [
     	'product_id' => Product::orderByRaw(\Illuminate\Support\Facades\DB::raw('newid()'))->first()->id,
 		'price' => $faker->randomDigit,
 		'description' => $faker->sentence,
 		'color' => $faker->colorName,
-		'image_url' => $faker->imageUrl(640, 480, 'nature'),
+		'image_url' => '/storage/application/products/'.\App\Utils::$image[array_rand(\App\Utils::$image)],
 		'type' => Consts::$COLLECTION_SIZES[random_int(0, 2)],
 		'rate' => $faker->randomFloat(2, 0, 5),
 		'rate_amount' => $faker->randomDigit,

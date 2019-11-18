@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 
 class Utils
 {
+	public static $image = [];
 	public static function getVerb($url)
 	{
 		$verbs = [];
@@ -29,5 +30,12 @@ class Utils
 		}
 
 		return $verbs;
+	}
+
+	public static function loadImageFromStore()
+	{
+		if (empty(self::$image)) {
+			self::$image = explode("\n", file_get_contents(storage_path('/file_name')));
+		}
 	}
 }

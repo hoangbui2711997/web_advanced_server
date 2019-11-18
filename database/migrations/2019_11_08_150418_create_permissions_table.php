@@ -15,8 +15,9 @@ class CreatePermissionsTable extends Migration
     {
         Schema::create('permissions', function (Blueprint $table) {
             $table->bigIncrements('id');
-			$table->string('url', 2000);
-			$table->string('view', 2000)->default('');
+//			$table->string('url', 2000);
+//			$table->string('view', 2000)->default('');
+			$table->string('component_path', 2000);
             $table->timestamps();
         });
     }

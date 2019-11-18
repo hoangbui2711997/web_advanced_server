@@ -1,0 +1,115 @@
+{
+   "<Root>":{
+      "nameComponent":"ROOT::<Root>",
+      "actions":[
+
+      ]
+   },
+   "<NuxtLoading>":{
+      "nameComponent":"ROOT::<Root>::<NuxtLoading>",
+      "actions":[
+
+      ]
+   },
+   "<NuxtBuildIndicator>":{
+      "nameComponent":"ROOT::<Root>::<NuxtBuildIndicator>",
+      "actions":[
+
+      ]
+   },
+   "<Layouts/default.vue>":{
+      "nameComponent":"ROOT::<Root>::<Layouts/default.vue>",
+      "actions":[
+
+      ]
+   },
+   "<SmoothScrollbar>":{
+      "nameComponent":"ROOT::<Root>::<Layouts/default.vue>::<SmoothScrollbar>::<Nuxt>::<Admin>::<Users>::<ConfirmModal>::<Modal>::<SmoothScrollbar>",
+      "actions":[
+
+      ]
+   },
+   "<Navigation>":{
+      "nameComponent":"ROOT::<Root>::<Layouts/default.vue>::<SmoothScrollbar>::<Navigation>",
+      "actions":[
+         "controlGetCart",
+         "controlLogout",
+         "controlGetLogin",
+         "controlGetSignup",
+         "controlGetHome",
+         "controlGetUsers",
+         "controlGetProductsAdmin",
+         "controlGetProductsUser",
+         "controlGetRoutes"
+      ]
+   },
+   "<ElBreadcrumb>":{
+      "nameComponent":"ROOT::<Root>::<Layouts/default.vue>::<SmoothScrollbar>::<ElBreadcrumb>",
+      "actions":[
+
+      ]
+   },
+   "<ElBreadcrumbItem>":{
+      "nameComponent":"ROOT::<Root>::<Layouts/default.vue>::<SmoothScrollbar>::<ElBreadcrumb>::<ElBreadcrumbItem>",
+      "actions":[
+
+      ]
+   },
+   "<Nuxt>":{
+      "nameComponent":"ROOT::<Root>::<Layouts/default.vue>::<SmoothScrollbar>::<Nuxt>",
+      "actions":[
+
+      ]
+   },
+   "<Admin>":{
+      "nameComponent":"ROOT::<Root>::<Layouts/default.vue>::<SmoothScrollbar>::<Nuxt>::<Admin>",
+      "actions":[
+
+      ]
+   },
+   "<Users>":{
+      "nameComponent":"ROOT::<Root>::<Layouts/default.vue>::<SmoothScrollbar>::<Nuxt>::<Admin>::<Users>",
+      "actions":[
+         "controlHandleAdd",
+         "controlHandleEdit",
+         "controlHandleDel",
+         "controlRemoveUser"
+      ]
+   },
+   "<DataTable>":{
+      "nameComponent":"ROOT::<Root>::<Layouts/default.vue>::<SmoothScrollbar>::<Nuxt>::<Admin>::<Users>::<DataTable>",
+      "actions":[
+
+      ]
+   },
+   "<Pagination>":{
+      "nameComponent":"ROOT::<Root>::<Layouts/default.vue>::<SmoothScrollbar>::<Nuxt>::<Admin>::<Users>::<DataTable>::<Pagination>",
+      "actions":[
+
+      ]
+   },
+   "<EditUserModal>":{
+      "nameComponent":"ROOT::<Root>::<Layouts/default.vue>::<SmoothScrollbar>::<Nuxt>::<Admin>::<Users>::<EditUserModal>",
+      "actions":[
+         "controlEdit"
+      ]
+   },
+   "<Modal>":{
+      "nameComponent":"ROOT::<Root>::<Layouts/default.vue>::<SmoothScrollbar>::<Nuxt>::<Admin>::<Users>::<ConfirmModal>::<Modal>",
+      "actions":[
+
+      ]
+   },
+   "<AddUserModal>":{
+      "nameComponent":"ROOT::<Root>::<Layouts/default.vue>::<SmoothScrollbar>::<Nuxt>::<Admin>::<Users>::<AddUserModal>",
+      "actions":[
+         "controlAdd"
+      ]
+   },
+   "<ConfirmModal>":{
+      "nameComponent":"ROOT::<Root>::<Layouts/default.vue>::<SmoothScrollbar>::<Nuxt>::<Admin>::<Users>::<ConfirmModal>",
+      "actions":[
+
+      ]
+   }
+}

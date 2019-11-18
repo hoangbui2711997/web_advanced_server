@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Consts;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -69,8 +71,14 @@ class User extends Authenticatable
 //        return Storage::url('avatars/'.$this->id.'/'.$this->avatar);
 //    }
 
-	public function isAdmin()
+	public function roles()
 	{
+		return $this->belongsToMany(Role::class, 'user_roles');
+	}
 
+	public function isUser(): bool
+	{
+		//        return $this->roles->where('role_id', Consts::$ROLE_USER)->count() > 0;
+		return $this->roles()->where('role_id', Consts::$ROLE_USER)->count() > 0;
 	}
 }

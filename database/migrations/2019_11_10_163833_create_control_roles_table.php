@@ -16,8 +16,8 @@ class CreateControlRolesTable extends Migration
         Schema::create('control_roles', function (Blueprint $table) {
             $table->unsignedBigInteger('control_id');
             $table->unsignedBigInteger('role_id');
-			$table->foreign('control_id')->references('id')->on('controls');
-			$table->foreign('role_id')->references('id')->on('roles');
+			$table->foreign('control_id')->references('id')->on('controls')->onDelete('cascade');
+			$table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
 			$table->primary(['control_id', 'role_id']);
             $table->timestamps();
         });

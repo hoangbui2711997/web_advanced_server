@@ -17,8 +17,8 @@ class CreateRoleControl extends Migration
 			$table->unsignedBigInteger('role_id');
 			$table->unsignedBigInteger('control_id');
 			$table->timestamps();
-			$table->foreign('role_id')->references('id')->on('roles');
-			$table->foreign('control_id')->references('id')->on('controls');
+			$table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
+			$table->foreign('control_id')->references('id')->on('controls')->onDelete('cascade');
 			$table->primary(['role_id', 'control_id']);
         });
     }

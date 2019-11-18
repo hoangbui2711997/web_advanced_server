@@ -20,15 +20,15 @@ class CreateInvoiceDetailsTable extends Migration
 			$table->unsignedSmallInteger('quantity');
 			$table->decimal('amount', 30);
 
-			$table->unsignedBigInteger('foreign_id');
-			$table->unsignedBigInteger('invoice_id');
-			$table->unsignedBigInteger('note_id');
-			$table->unsignedBigInteger('discount_id');
+			$table->unsignedBigInteger('foreign_id')->nullable();
+			$table->unsignedBigInteger('invoice_id')->nullable();
+			$table->unsignedBigInteger('note_id')->nullable();
+			$table->unsignedBigInteger('discount_id')->nullable();
             $table->timestamps();
 
-			$table->foreign('invoice_id')->references('id')->on('invoices');
-			$table->foreign('note_id')->references('id')->on('notes');
-			$table->foreign('discount_id')->references('id')->on('discounts');
+			$table->foreign('invoice_id')->references('id')->on('invoices')->onDelete('cascade');
+			$table->foreign('note_id')->references('id')->on('notes')->onDelete('cascade');
+			$table->foreign('discount_id')->references('id')->on('discounts')->onDelete('cascade');
         });
     }
 

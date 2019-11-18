@@ -18,13 +18,12 @@ class CreateInvoiceEnteredDetailsTable extends Migration
 			$table->decimal('price', 30);
 			$table->unsignedInteger('quantity');
 			$table->unsignedInteger('amount');
-			$table->unsignedBigInteger('manufactory_id');
-
-			$table->unsignedBigInteger('invoice_entered_id');
+			$table->unsignedBigInteger('manufactory_id')->nullable();
+			$table->unsignedBigInteger('invoice_entered_id')->nullable();
             $table->timestamps();
 
-			$table->foreign('invoice_entered_id')->references('id')->on('invoice_entereds');
-			$table->foreign('manufactory_id')->references('id')->on('manufactories');
+			$table->foreign('invoice_entered_id')->references('id')->on('invoice_entereds')->onDelete('cascade');
+			$table->foreign('manufactory_id')->references('id')->on('manufactories')->onDelete('cascade');
         });
     }
 

@@ -31,6 +31,7 @@ Route::group(['middleware' => 'auth:api'], function() {
 	Route::delete('products/cart', 'Products\ProductController@removeProductInCart');
 });
 Route::resource('products', 'Products\ProductController');
+Route::get('product/{slug}', 'Products\ProductController@getProduct');
 Route::get('zipcode/{id}', 'Products\ProductController@getZipcode');
 //Route::get('custom-products', 'Products\ProductController@show');
 

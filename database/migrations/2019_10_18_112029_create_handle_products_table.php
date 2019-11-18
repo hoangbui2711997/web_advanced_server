@@ -17,12 +17,12 @@ class CreateHandleProductsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedInteger('amount');
             $table->text('description');
-			$table->unsignedBigInteger('stock_id');
-			$table->unsignedBigInteger('product_variation_id');
+			$table->unsignedBigInteger('stock_id')->nullable();
+			$table->unsignedBigInteger('product_variation_id')->nullable();
             $table->timestamps();
 
-			$table->foreign('stock_id')->references('id')->on('stocks');
-			$table->foreign('product_variation_id')->references('id')->on('product_variations');
+			$table->foreign('stock_id')->references('id')->on('stocks')->onDelete('cascade');
+			$table->foreign('product_variation_id')->references('id')->on('product_variations')->onDelete('cascade');
         });
     }
 

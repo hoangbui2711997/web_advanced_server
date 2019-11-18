@@ -15,11 +15,11 @@ class CreateDetailProductInCartsTable extends Migration
     {
         Schema::create('detail_product_in_carts', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('product_in_cart_id');
-            $table->unsignedBigInteger('detail_morph_id');
+            $table->unsignedBigInteger('product_in_cart_id')->nullable();
+            $table->unsignedBigInteger('detail_morph_id')->nullable();
             $table->string('detail_morph_type');
             $table->string('decoration_field');
-			$table->foreign('product_in_cart_id')->references('id')->on('product_in_carts');
+			$table->foreign('product_in_cart_id')->references('id')->on('product_in_carts')->onDelete('cascade');
             $table->timestamps();
         });
     }

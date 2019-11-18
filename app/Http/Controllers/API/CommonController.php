@@ -82,7 +82,7 @@ class CommonController extends Controller
 			if (!empty($api)) {
 				$address[] = [
 					'verb' => $verb = implode(Utils::getVerb($api), ','),
-					'url' => env('API_URL')
+					'url' => env('APP_URL')
 						. '/'
 						. trim(explode('|', $api)
 						[Str::contains($verb, 'GET|HEAD') ? $keyAddress + 1 : $keyAddress])

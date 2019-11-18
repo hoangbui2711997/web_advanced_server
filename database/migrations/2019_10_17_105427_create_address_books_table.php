@@ -23,14 +23,14 @@ class CreateAddressBooksTable extends Migration
 			$table->string('phone_number');
 			$table->string('email');
 
-			$table->unsignedBigInteger('user_id');
-			$table->unsignedBigInteger('location_type_id');
-			$table->unsignedBigInteger('zipcode_id');
+			$table->unsignedBigInteger('user_id')->nullable();
+			$table->unsignedBigInteger('location_type_id')->nullable();
+			$table->unsignedBigInteger('zipcode_id')->nullable();
             $table->timestamps();
 
-			$table->foreign('user_id')->references('id')->on('users');
-			$table->foreign('location_type_id')->references('id')->on('location_types');
-			$table->foreign('zipcode_id')->references('id')->on('zip_codes');
+			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+			$table->foreign('location_type_id')->references('id')->on('location_types')->onDelete('cascade');
+			$table->foreign('zipcode_id')->references('id')->on('zip_codes')->onDelete('cascade');
         });
     }
 

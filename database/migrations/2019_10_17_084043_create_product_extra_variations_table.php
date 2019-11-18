@@ -24,8 +24,8 @@ class CreateProductExtraVariationsTable extends Migration
 			$table->bigInteger('discount_id')->unsigned();
             $table->timestamps();
 
-			$table->foreign('product_extra_id')->references('id')->on('product_extras');
-			$table->foreign('discount_id')->references('id')->on('discounts');
+			$table->foreign('product_extra_id')->references('id')->on('product_extras')->onDelete('cascade');
+			$table->foreign('discount_id')->references('id')->on('discounts')->onDelete('cascade');
         });
     }
 

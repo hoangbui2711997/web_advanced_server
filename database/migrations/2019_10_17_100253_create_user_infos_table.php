@@ -27,9 +27,9 @@ class CreateUserInfosTable extends Migration
 			$table->bigInteger('user_id')->unsigned();
             $table->timestamps();
 
-			$table->foreign('user_id')->references('id')->on('users');
-			$table->foreign('marital_status_id')->references('id')->on('marital_statuses');
-			$table->foreign('zipcode_id')->references('id')->on('zip_codes');
+			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+			$table->foreign('marital_status_id')->references('id')->on('marital_statuses')->onDelete('cascade');
+			$table->foreign('zipcode_id')->references('id')->on('zip_codes')->onDelete('cascade');
         });
     }
 

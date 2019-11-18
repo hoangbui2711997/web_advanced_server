@@ -15,12 +15,12 @@ class CreateInvoiceServiceFeesTable extends Migration
     {
         Schema::create('invoice_service_fees', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('invoice_id');
-            $table->unsignedBigInteger('service_fee_id');
+            $table->unsignedBigInteger('invoice_id')->nullable();
+            $table->unsignedBigInteger('service_fee_id')->nullable();
             $table->timestamps();
 
-            $table->foreign('invoice_id')->references('id')->on('invoices');
-            $table->foreign('service_fee_id')->references('id')->on('service_fees');
+            $table->foreign('invoice_id')->references('id')->on('invoices')->onDelete('cascade');
+            $table->foreign('service_fee_id')->references('id')->on('service_fees')->onDelete('cascade');
         });
     }
 

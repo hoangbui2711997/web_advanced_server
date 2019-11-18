@@ -20,15 +20,15 @@ class CreateInvoicesTable extends Migration
 			$table->string('status');
 
 			$table->unsignedBigInteger('employee_id')->nullable();
-			$table->unsignedBigInteger('branch_id');
-			$table->unsignedBigInteger('discount_id');
+			$table->unsignedBigInteger('branch_id')->nullable();
+			$table->unsignedBigInteger('discount_id')->nullable();
 			$table->unsignedBigInteger('deliver_info_id')->nullable();
             $table->timestamps();
 
-			$table->foreign('employee_id')->references('id')->on('employees');
-			$table->foreign('discount_id')->references('id')->on('discounts');
-			$table->foreign('deliver_info_id')->references('id')->on('deliver_infos');
-			$table->foreign('branch_id')->references('id')->on('branches');
+			$table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
+			$table->foreign('discount_id')->references('id')->on('discounts')->onDelete('cascade');
+			$table->foreign('deliver_info_id')->references('id')->on('deliver_infos')->onDelete('cascade');
+			$table->foreign('branch_id')->references('id')->on('branches')->onDelete('cascade');
         });
     }
 

@@ -15,14 +15,14 @@ class CreateRewardUsersTable extends Migration
     {
         Schema::create('reward_users', function (Blueprint $table) {
             $table->bigIncrements('id');
-			$table->unsignedBigInteger('user_id');
-			$table->unsignedBigInteger('reward_id');
+			$table->unsignedBigInteger('user_id')->nullable();
+			$table->unsignedBigInteger('reward_id')->nullable();
 			$table->unsignedInteger('point')->default(0);
 			$table->string('status');
             $table->timestamps();
 
-			$table->foreign('user_id')->references('id')->on('users');
-			$table->foreign('reward_id')->references('id')->on('reward_programs');
+			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+			$table->foreign('reward_id')->references('id')->on('reward_programs')->onDelete('cascade');
         });
     }
 

@@ -17,10 +17,10 @@ class CreateServiceFeesTable extends Migration
             $table->bigIncrements('id');
 			$table->decimal('price', 30);
 
-			$table->unsignedBigInteger('service_type_id');
+			$table->unsignedBigInteger('service_type_id')->nullable();
             $table->timestamps();
 
-			$table->foreign('service_type_id')->references('id')->on('service_types');
+			$table->foreign('service_type_id')->references('id')->on('service_types')->onDelete('cascade');
         });
     }
 

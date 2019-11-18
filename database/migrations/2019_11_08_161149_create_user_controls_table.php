@@ -16,8 +16,8 @@ class CreateUserControlsTable extends Migration
         Schema::create('user_controls', function (Blueprint $table) {
 			$table->unsignedBigInteger('user_id');
 			$table->unsignedBigInteger('control_id');
-			$table->foreign('user_id')->references('id')->on('users');
-			$table->foreign('control_id')->references('id')->on('controls');
+			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+			$table->foreign('control_id')->references('id')->on('controls')->onDelete('cascade');
             $table->primary(['user_id', 'control_id']);
             $table->timestamps();
         });

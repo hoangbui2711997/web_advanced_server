@@ -16,12 +16,12 @@ class CreateInvoiceEnteredsTable extends Migration
         Schema::create('invoice_entereds', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->dateTime('date_import');
-			$table->unsignedBigInteger('employee_id');
-			$table->unsignedBigInteger('stock_id');
+			$table->unsignedBigInteger('employee_id')->nullable();
+			$table->unsignedBigInteger('stock_id')->nullable();
             $table->timestamps();
 
-			$table->foreign('employee_id')->references('id')->on('employees');
-			$table->foreign('stock_id')->references('id')->on('stocks');
+			$table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
+			$table->foreign('stock_id')->references('id')->on('stocks')->onDelete('cascade');
         });
     }
 

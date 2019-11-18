@@ -16,8 +16,8 @@ class CreateControlsTable extends Migration
         Schema::create('controls', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->unsignedBigInteger('permission_id');
-			$table->foreign('permission_id')->references('id')->on('permissions');
+            $table->unsignedBigInteger('permission_id')->nullable();
+			$table->foreign('permission_id')->references('id')->on('permissions')->onDelete('cascade');
             $table->timestamps();
         });
     }

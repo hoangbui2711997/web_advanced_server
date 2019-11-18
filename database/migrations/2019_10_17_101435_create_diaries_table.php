@@ -15,12 +15,12 @@ class CreateDiariesTable extends Migration
     {
         Schema::create('diaries', function (Blueprint $table) {
             $table->bigIncrements('id');
-			$table->unsignedBigInteger('employee_id');
+			$table->unsignedBigInteger('employee_id')->nullable();
 			$table->dateTime('start_time');
 			$table->dateTime('end_time');
             $table->timestamps();
 
-			$table->foreign('employee_id')->references('id')->on('employees');
+			$table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
         });
     }
 

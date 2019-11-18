@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Consts;
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\Product;
+use App\Models\UserRole;
 use App\Notifications\SignupActivate;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
@@ -22,12 +24,6 @@ use Auth;
 
 class AuthController extends Controller
 {
-    /**
-     * Create user
-     *
-     * @param Request $request
-     * @return JsonResponse [string] message
-     */
     public function signup(Request $request)
     {
         $request->validate([
@@ -40,11 +36,15 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->password),
             'activation_token' => Str::random(60),
-			'role_id' => 2,
         ]);
 		try {
 			DB::beginTransaction();
 			$user->save();
+			$userRole = new UserRole([
+				'user_id' => $user->id,
+				'role_id' => Consts::$ROLE_USER
+			]);
+			$userRole->save();
 			$cart = new Cart(['user_id' => $user->id, 'total' => 0]);
 			$cart->save();
 //        $avatar = Avatar::create($user->name)->getImageObject()->encode('png');
@@ -79,8 +79,9 @@ class AuthController extends Controller
         $credentials = request(['email', 'password']);
 //        $credentials['password'] = Hash::make(data_get($credentials, 'password'));
 //        $credentials['active'] = 1;
-//        $credentials['deleted_at'] = null;
-        if(!Auth::attempt($credentials))
+
+		$user = User::where('email', $request->input('email'))->first();
+        if($user === null || !$user->isUser() || !Auth::attempt($credentials))
             return response()->json([
                 'message' => 'Unauthorized'
             ], 401);
@@ -105,8 +106,8 @@ class AuthController extends Controller
      * @param Request $request
      * @return JsonResponse [string] message
      */
-    public function logout(Request $request)
-    {
+    public function logout(Request $request): JsonResponse
+	{
         $request->user()->token()->revoke();
         return response()->json([
             'message' => 'Successfully logged out'
@@ -119,8 +120,8 @@ class AuthController extends Controller
      *
      * @return  ResponseFactory::json user object
      */
-    public function user(Request $request)
-    {
+    public function user(Request $request): ResponseFactory
+	{
         return response()->json($request->user());
     }
 

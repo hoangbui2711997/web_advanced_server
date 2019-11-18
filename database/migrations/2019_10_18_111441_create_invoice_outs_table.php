@@ -16,14 +16,14 @@ class CreateInvoiceOutsTable extends Migration
         Schema::create('invoice_outs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->dateTime('date_export');
-			$table->unsignedBigInteger('employee_id');
-			$table->unsignedBigInteger('branch_id');
-			$table->unsignedBigInteger('invoice_entered_id');
+			$table->unsignedBigInteger('employee_id')->nullable();
+			$table->unsignedBigInteger('branch_id')->nullable();
+			$table->unsignedBigInteger('invoice_entered_id')->nullable();
             $table->timestamps();
 
-			$table->foreign('employee_id')->references('id')->on('employees');
-			$table->foreign('branch_id')->references('id')->on('branches');
-			$table->foreign('invoice_entered_id')->references('id')->on('invoice_entereds');
+			$table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
+			$table->foreign('branch_id')->references('id')->on('branches')->onDelete('cascade');
+			$table->foreign('invoice_entered_id')->references('id')->on('invoice_entereds')->onDelete('cascade');
         });
     }
 
