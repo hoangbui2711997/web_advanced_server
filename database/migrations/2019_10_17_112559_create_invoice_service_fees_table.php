@@ -19,8 +19,8 @@ class CreateInvoiceServiceFeesTable extends Migration
             $table->unsignedBigInteger('service_fee_id')->nullable();
             $table->timestamps();
 
-            $table->foreign('invoice_id')->references('id')->on('invoices')->onDelete('cascade');
-            $table->foreign('service_fee_id')->references('id')->on('service_fees')->onDelete('cascade');
+            $table->foreign('invoice_id')->references('id')->on('invoices');
+            $table->foreign('service_fee_id')->references('id')->on('service_fees');
         });
     }
 

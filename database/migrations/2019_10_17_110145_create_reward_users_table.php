@@ -21,8 +21,8 @@ class CreateRewardUsersTable extends Migration
 			$table->string('status');
             $table->timestamps();
 
-			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-			$table->foreign('reward_id')->references('id')->on('reward_programs')->onDelete('cascade');
+			$table->foreign('user_id')->references('id')->on('users');
+			$table->foreign('reward_id')->references('id')->on('reward_programs');
         });
     }
 

@@ -9,12 +9,8 @@ use Faker\Generator as Faker;
 
 $factory->define(Address::class, function (Faker $faker) {
     return [
-		'name' => $faker->name,
-		'address_1' => $faker->address,
-		'city' => $faker->city,
-		'postal_code' => $faker->postcode,
-		'country_id' => factory(Country::class)->create()->id,
-//		'user_id' => User::all()->random(1)->first(),
-		'default' => $faker->boolean
+		'street' => $faker->streetAddress,
+		'home_number' => $faker->streetName,
+		'zipcode_id' => \App\Models\ZipCode::orderByRaw(\Illuminate\Support\Facades\DB::raw('newid()'))->first()->id,
     ];
 });

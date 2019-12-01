@@ -15,7 +15,7 @@ class AddPropertiesForBranch extends Migration
     {
         Schema::table('branches', function (Blueprint $table) {
 			$table->unsignedBigInteger('employee_id')->nullable();
-			$table->foreign('employee_id', 'branches_employee_id')->references('id')->on('employees');
+			$table->foreign('employee_id', 'branches_employee_id')->references('id')->on('users');
         });
     }
 

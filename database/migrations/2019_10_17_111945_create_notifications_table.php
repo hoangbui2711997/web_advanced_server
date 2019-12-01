@@ -19,7 +19,7 @@ class CreateNotificationsTable extends Migration
 			$table->text('content');
             $table->timestamps();
 
-			$table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');
+			$table->foreign('admin_id')->references('id')->on('users');
         });
     }
 

@@ -20,7 +20,7 @@ class CreateServiceFeesTable extends Migration
 			$table->unsignedBigInteger('service_type_id')->nullable();
             $table->timestamps();
 
-			$table->foreign('service_type_id')->references('id')->on('service_types')->onDelete('cascade');
+			$table->foreign('service_type_id')->references('id')->on('service_types');
         });
     }
 

@@ -18,18 +18,20 @@ class CreateUserInfosTable extends Migration
 			$table->string('first_name');
 			$table->string('last_name');
 			$table->tinyInteger('gender');
-			$table->dateTime('birth_day');
+			$table->dateTime('birth_day')->nullable();
 			$table->tinyInteger('age');
 			$table->integer('point_available');
-
-			$table->bigInteger('zipcode_id')->unsigned();
-			$table->bigInteger('marital_status_id')->unsigned();
-			$table->bigInteger('user_id')->unsigned();
+			$table->string('phone_number')->nullable();
+			$table->unsignedBigInteger('address_id')->nullable();
+			$table->unsignedBigInteger('marital_status_id')->nullable();
+			$table->unsignedBigInteger('user_id')->nullable();
+			$table->unsignedBigInteger('branch_id')->nullable();
             $table->timestamps();
 
-			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-			$table->foreign('marital_status_id')->references('id')->on('marital_statuses')->onDelete('cascade');
-			$table->foreign('zipcode_id')->references('id')->on('zip_codes')->onDelete('cascade');
+			$table->foreign('branch_id')->references('id')->on('branches');
+			$table->foreign('user_id')->references('id')->on('users');
+			$table->foreign('marital_status_id')->references('id')->on('marital_statuses');
+			$table->foreign('address_id')->references('id')->on('addresses');
         });
     }
 

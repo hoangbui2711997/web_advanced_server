@@ -36,4 +36,19 @@ class Consts
 	public static $ROLE_EMPLOYEE = 3;
 	public static $ROLE_USER = 4;
 
+	public static $INVOICE_STATUS_CREATED = 'created';
+	public static $INVOICE_STATUS_ORDERING = 'ordering';
+	public static $INVOICE_STATUS_NEED_PAY = 'need_pay';
+	public static $INVOICE_STATUS_CANCELED = 'canceled';
+	public static $INVOICE_STATUS_SUCCESS = 'success';
+
+	public static $INVOICE_STATUSES = [
+		'created',
+		'ordering',
+		'need_pay',
+		'canceled',
+		'success',
+	];
+
+	public static $PER_PAGE = 10;
 }

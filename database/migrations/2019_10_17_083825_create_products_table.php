@@ -31,8 +31,8 @@ class CreateProductsTable extends Migration
 			$table->bigInteger('category_id')->unsigned();
 			$table->timestamps();
 
-			$table->foreign('discount_id')->references('id')->on('discounts')->onDelete('cascade');
-			$table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+			$table->foreign('discount_id')->references('id')->on('discounts');
+			$table->foreign('category_id')->references('id')->on('categories');
 			$table->softDeletes();
         });
     }

@@ -22,8 +22,8 @@ class CreateInvoiceEnteredDetailsTable extends Migration
 			$table->unsignedBigInteger('invoice_entered_id')->nullable();
             $table->timestamps();
 
-			$table->foreign('invoice_entered_id')->references('id')->on('invoice_entereds')->onDelete('cascade');
-			$table->foreign('manufactory_id')->references('id')->on('manufactories')->onDelete('cascade');
+			$table->foreign('invoice_entered_id')->references('id')->on('invoice_entereds');
+			$table->foreign('manufactory_id')->references('id')->on('manufactories');
         });
     }
 

@@ -39,13 +39,13 @@ class MigratePermission extends Command
      */
     public function handle()
     {
-		$items = json_decode(file_get_contents(base_path() . '/database/migrations/data/flowers_dbo_permission_control.json'));
+		$items = json_decode(file_get_contents(base_path() . '/database/migrations/data/flowers_dbo_permissions.json'));
 		$recordPermissions = [];
 		Log::warning(collect($items));
 
 		foreach ($items as $item) {
 			$recordPermissions[] = [
-				'component_path' => $item->nameComponent
+				'name' => $item->name
 			];
 		}
 		DB::table('permissions')->insert($recordPermissions);

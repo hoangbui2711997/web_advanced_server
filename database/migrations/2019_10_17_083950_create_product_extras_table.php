@@ -20,8 +20,8 @@ class CreateProductExtrasTable extends Migration
 			$table->bigInteger('unit_id')->unsigned();
             $table->timestamps();
 
-			$table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
-			$table->foreign('unit_id')->references('id')->on('units')->onDelete('cascade');
+			$table->foreign('product_id')->references('id')->on('products');
+			$table->foreign('unit_id')->references('id')->on('units');
         });
     }
 

@@ -22,9 +22,9 @@ class CreateUserPointStoresTable extends Migration
             $table->unsignedBigInteger('discount_id')->nullable();
             $table->timestamps();
 
-			$table->foreign('point_store_id')->references('id')->on('point_stores')->onDelete('cascade');
-			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-			$table->foreign('discount_id')->references('id')->on('discounts')->onDelete('cascade');
+			$table->foreign('point_store_id')->references('id')->on('point_stores');
+			$table->foreign('user_id')->references('id')->on('users');
+			$table->foreign('discount_id')->references('id')->on('discounts');
         });
     }
 

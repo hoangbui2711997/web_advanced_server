@@ -20,8 +20,8 @@ class CreateInvoiceOutDetailsTable extends Migration
 			$table->unsignedInteger('amount');
             $table->timestamps();
 
-			$table->foreign('invoice_out_id')->references('id')->on('invoice_outs')->onDelete('cascade');
-			$table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+			$table->foreign('invoice_out_id')->references('id')->on('invoice_outs');
+			$table->foreign('product_id')->references('id')->on('products');
         });
     }
 

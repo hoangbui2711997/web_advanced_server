@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 class Utils
 {
 	public static $image = [];
+
 	public static function getVerb($url)
 	{
 		$verbs = [];

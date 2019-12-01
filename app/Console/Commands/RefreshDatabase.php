@@ -42,9 +42,18 @@ class RefreshDatabase extends Command
 		$this->call('passport:install', ['--force']);
 		$this->call('custom:migrate:unit');
     	$this->call('custom:migrate:zip_code');
-    	$this->call('custom:migrate:product_extra');
+//    	$this->call('custom:migrate:product_extra');
     	$this->call('custom:migrate:role');
-    	$this->call('custom:migrate:permission');
+    	$this->call('custom:migrate:marital');
+    	$this->call('custom:migrate:branch');
+    	$this->call('custom:migrate:note_type');
+		$this->call('custom:migrate:permission');
+		$this->call('custom:migrate:user');
 		$this->call('db:seed');
+		$this->call('custom:migrate:role_permission');
+
+		$this->call('custom:migrate:invoice');
+		$this->call('custom:migrate:invoice-detail');
+		$this->call('custom:migrate:salary');
     }
 }

@@ -23,8 +23,8 @@ class CreateReviewsTable extends Migration
 			$table->unsignedBigInteger('product_variation_id')->nullable();
             $table->timestamps();
 
-			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-			$table->foreign('product_variation_id')->references('id')->on('product_variations')->onDelete('cascade');
+			$table->foreign('user_id')->references('id')->on('users');
+			$table->foreign('product_variation_id')->references('id')->on('product_variations');
         });
     }
 

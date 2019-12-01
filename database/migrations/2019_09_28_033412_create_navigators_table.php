@@ -18,7 +18,7 @@ class CreateNavigatorsTable extends Migration
 			$table->string('link', 1000)->default('');
 			$table->string('icon')->nullable();
 			$table->unsignedSmallInteger('order')->default(1);
-			$table->foreign('parent_id')->references('id')->on('navigators')->onDelete('cascade');
+			$table->foreign('parent_id')->references('id')->on('navigators');
 			$table->string('title', 255);
 			$table->smallInteger('level')->default(1);
 			$table->timestamps();

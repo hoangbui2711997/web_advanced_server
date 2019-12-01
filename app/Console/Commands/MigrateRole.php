@@ -44,7 +44,6 @@ class MigrateRole extends Command
 		foreach ($items as $item) {
 			$records[] = [
 				'name' => $item->name,
-				'code' => $item->code,
 				'created_at' => $item->created_at,
 				'updated_at' => $item->updated_at,
 			];

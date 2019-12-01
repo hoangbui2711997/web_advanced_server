@@ -26,9 +26,9 @@ class CreateInvoiceDetailsTable extends Migration
 			$table->unsignedBigInteger('discount_id')->nullable();
             $table->timestamps();
 
-			$table->foreign('invoice_id')->references('id')->on('invoices')->onDelete('cascade');
-			$table->foreign('note_id')->references('id')->on('notes')->onDelete('cascade');
-			$table->foreign('discount_id')->references('id')->on('discounts')->onDelete('cascade');
+			$table->foreign('invoice_id')->references('id')->on('invoices');
+			$table->foreign('note_id')->references('id')->on('notes');
+			$table->foreign('discount_id')->references('id')->on('discounts');
         });
     }
 

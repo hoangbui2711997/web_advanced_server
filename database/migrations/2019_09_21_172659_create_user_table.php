@@ -21,7 +21,7 @@ class CreateUserTable extends Migration
             $table->boolean('active')->default(false);
             $table->string('activation_token');
             $table->string('avatar')->default('avatar.png');
-
+            $table->decimal('balance')->default(0);
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

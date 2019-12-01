@@ -20,8 +20,8 @@ class CreateInvoiceEnteredsTable extends Migration
 			$table->unsignedBigInteger('stock_id')->nullable();
             $table->timestamps();
 
-			$table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
-			$table->foreign('stock_id')->references('id')->on('stocks')->onDelete('cascade');
+			$table->foreign('employee_id')->references('id')->on('users');
+			$table->foreign('stock_id')->references('id')->on('stocks');
         });
     }
 

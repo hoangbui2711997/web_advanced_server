@@ -10,6 +10,10 @@ class Product extends CustomModel
 {
 	use HasStorageInfo;
 
+	protected $casts = [
+		'rate' => 'float'
+	];
+
 	public function variations(): \Illuminate\Database\Eloquent\Relations\HasMany
 	{
 		return $this->hasMany(ProductVariation::class);

@@ -1,29 +1,25 @@
 [
   {
     "id": 1,
-    "name": 1,
-    "code": "ADMIN",
+    "name": "ADMIN",
     "created_at": null,
     "updated_at": null
   },
   {
     "id": 2,
-    "name": 2,
-    "code": "MANAGER",
+    "name": "MANAGER",
     "created_at": null,
     "updated_at": null
   },
   {
     "id": 3,
-    "name": 3,
-    "code": "EMPLOYEE",
+    "name": "EMPLOYEE",
     "created_at": null,
     "updated_at": null
   },
   {
     "id": 4,
-    "name": 4,
-    "code": "USER",
+    "name": "USER",
     "created_at": null,
     "updated_at": null
   }

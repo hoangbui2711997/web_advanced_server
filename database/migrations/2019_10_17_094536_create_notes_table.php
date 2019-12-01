@@ -21,7 +21,7 @@ class CreateNotesTable extends Migration
 			$table->bigInteger('type_id')->unsigned();
             $table->timestamps();
 
-			$table->foreign('type_id')->references('id')->on('note_types')->onDelete('cascade');
+			$table->foreign('type_id')->references('id')->on('note_types');
         });
     }
 

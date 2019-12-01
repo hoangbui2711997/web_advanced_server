@@ -19,7 +19,7 @@ class CreateDetailProductInCartsTable extends Migration
             $table->unsignedBigInteger('detail_morph_id')->nullable();
             $table->string('detail_morph_type');
             $table->string('decoration_field');
-			$table->foreign('product_in_cart_id')->references('id')->on('product_in_carts')->onDelete('cascade');
+			$table->foreign('product_in_cart_id')->references('id')->on('product_in_carts');
             $table->timestamps();
         });
     }

@@ -39,7 +39,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-	protected $dateFormat = 'Y-m-d H:i:s';
+	protected $dateFormat = 'Y-m-d H:i:s.u';
     /**
      * @var array
      */
@@ -80,5 +80,18 @@ class User extends Authenticatable
 	{
 		//        return $this->roles->where('role_id', Consts::$ROLE_USER)->count() > 0;
 		return $this->roles()->where('role_id', Consts::$ROLE_USER)->count() > 0;
+	}
+
+	public function fromDateTime($value)
+	{
+		return empty($value) ? $value :
+			substr(
+				$this->asDateTime($value)->format(
+					$this->getDateFormat()
+				),
+				0,
+				(strlen($this->asDateTime($value)->format(
+						$this->getDateFormat()
+					)) - 3));
 	}
 }

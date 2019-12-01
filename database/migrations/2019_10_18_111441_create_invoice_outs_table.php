@@ -21,9 +21,9 @@ class CreateInvoiceOutsTable extends Migration
 			$table->unsignedBigInteger('invoice_entered_id')->nullable();
             $table->timestamps();
 
-			$table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
-			$table->foreign('branch_id')->references('id')->on('branches')->onDelete('cascade');
-			$table->foreign('invoice_entered_id')->references('id')->on('invoice_entereds')->onDelete('cascade');
+			$table->foreign('employee_id')->references('id')->on('users');
+			$table->foreign('branch_id')->references('id')->on('branches');
+			$table->foreign('invoice_entered_id')->references('id')->on('invoice_entereds');
         });
     }
 

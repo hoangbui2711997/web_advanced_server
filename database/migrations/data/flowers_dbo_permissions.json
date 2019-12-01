@@ -1,50 +1,29 @@
 [
   {
     "id": 1,
-    "url": "/admin",
-    "view": "admin",
+    "name": "UserManagement",
+	  "path": "/api/user-management",
     "created_at": null,
     "updated_at": null
   },
   {
     "id": 2,
-    "url": "/cart",
-    "view": "cart",
+    "name": "ProductManagement",
+	  "path": "/api/product-management",
     "created_at": null,
     "updated_at": null
   },
   {
     "id": 3,
-    "url": "/categories",
-    "view": "categories",
+    "name": "RoleManagement",
+    "path": "/api/role-management",
     "created_at": null,
     "updated_at": null
   },
   {
     "id": 4,
-    "url": "/auth/login",
-    "view": "auth-login",
-    "created_at": null,
-    "updated_at": null
-  },
-  {
-    "id": 5,
-    "url": "/auth/register",
-    "view": "auth-register",
-    "created_at": null,
-    "updated_at": null
-  },
-  {
-    "id": 6,
-    "url": "/products/:slug?",
-    "view": "products-slug",
-    "created_at": null,
-    "updated_at": null
-  },
-  {
-    "id": 7,
-    "url": "/",
-    "view": "index",
+    "name": "RouteManagement",
+	  "path": "",
     "created_at": null,
     "updated_at": null
   }

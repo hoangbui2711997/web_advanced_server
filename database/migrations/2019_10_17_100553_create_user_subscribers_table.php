@@ -20,7 +20,7 @@ class CreateUserSubscribersTable extends Migration
 			$table->boolean('receive_purchase');
 
             $table->timestamps();
-			$table->foreign('id')->references('id')->on('users')->onDelete('cascade');
+			$table->foreign('id')->references('id')->on('users');
         });
     }
 

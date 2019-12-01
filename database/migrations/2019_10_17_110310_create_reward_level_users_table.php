@@ -19,8 +19,8 @@ class CreateRewardLevelUsersTable extends Migration
 			$table->unsignedBigInteger('level_id')->nullable();
             $table->timestamps();
 
-			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-			$table->foreign('level_id')->references('id')->on('levels')->onDelete('cascade');
+			$table->foreign('user_id')->references('id')->on('users');
+			$table->foreign('level_id')->references('id')->on('levels');
         });
     }
 

@@ -21,8 +21,8 @@ class CreateHandleProductsTable extends Migration
 			$table->unsignedBigInteger('product_variation_id')->nullable();
             $table->timestamps();
 
-			$table->foreign('stock_id')->references('id')->on('stocks')->onDelete('cascade');
-			$table->foreign('product_variation_id')->references('id')->on('product_variations')->onDelete('cascade');
+			$table->foreign('stock_id')->references('id')->on('stocks');
+			$table->foreign('product_variation_id')->references('id')->on('product_variations');
         });
     }
 

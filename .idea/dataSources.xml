@@ -28,6 +28,7 @@
     <data-source source="LOCAL" name="Microsoft SQL Server (jTds) - @localhost" uuid="7b649d65-ed00-455b-ad00-38cc04b7bba5">
       <driver-ref>sqlserver.ms</driver-ref>
       <synchronize>true</synchronize>
+      <configured-by-url>true</configured-by-url>
       <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
       <jdbc-url>jdbc:sqlserver://localhost:1433</jdbc-url>
       <driver-properties>

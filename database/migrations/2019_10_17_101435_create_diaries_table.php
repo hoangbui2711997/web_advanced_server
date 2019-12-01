@@ -20,7 +20,7 @@ class CreateDiariesTable extends Migration
 			$table->dateTime('end_time');
             $table->timestamps();
 
-			$table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
+			$table->foreign('employee_id')->references('id')->on('users');
         });
     }
 

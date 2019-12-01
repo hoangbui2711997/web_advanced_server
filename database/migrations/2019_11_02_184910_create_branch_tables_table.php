@@ -22,7 +22,7 @@ class CreateBranchTablesTable extends Migration
             $table->unsignedBigInteger('id_object')->nullable();
 
             $table->timestamps();
-            $table->foreign('branch_id')->references('id')->on('branches')->onDelete('cascade');
+            $table->foreign('branch_id')->references('id')->on('branches');
 
         });
     }

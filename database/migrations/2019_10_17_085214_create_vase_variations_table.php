@@ -24,7 +24,7 @@ class CreateVaseVariationsTable extends Migration
 			$table->bigInteger('vase_id')->unsigned();
 			$table->timestamps();
 
-			$table->foreign('vase_id')->references('id')->on('vases')->onDelete('cascade');
+			$table->foreign('vase_id')->references('id')->on('vases');
         });
     }
 

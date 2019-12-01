@@ -21,7 +21,7 @@ class CreateStockProductsTable extends Migration
 			$table->string('object_reference_id');
             $table->timestamps();
 
-			$table->foreign('stock_id')->references('id')->on('stocks')->onDelete('cascade');
+			$table->foreign('stock_id')->references('id')->on('stocks');
         });
     }
 
