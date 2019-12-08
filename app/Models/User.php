@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Consts;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -19,7 +21,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'active', 'activation_token', 'avatar'
+        'name', 'email', 'password', 'active', 'activation_token', 'avatar', 'role_id'
     ];
 
     /**
@@ -37,17 +39,30 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+	protected $dateFormat = 'Y-m-d H:i:s.u';
+    /**
+     * @var array
+     */
+//    protected $dates = ['deleted_at'];
+    /**
+     * @var array
+     */
+//	public function cart()
+//	{
+//		return $this->belongsToMany(ProductVariation::class, 'cart_user')
+//			->withPivot('quantity')
+//			->withTimestamps();
+//	}
 
-    /**
-     * @var array
-     */
-    protected $dates = ['deleted_at'];
-    /**
-     * @var array
-     */
+	public function addresses()
+	{
+		return $this->hasMany(Address::class);
+	}
+
+	public function cart()
+	{
+		return $this->hasMany(Cart::class);
+	}
 //
 //    protected $appends = ['avatar_url'];
 //
@@ -55,4 +70,33 @@ class User extends Authenticatable
 //    {
 //        return Storage::url('avatars/'.$this->id.'/'.$this->avatar);
 //    }
+
+	public function roles()
+	{
+		return $this->belongsToMany(Role::class, 'user_roles');
+	}
+
+	public function isUser(): bool
+	{
+		//        return $this->roles->where('role_id', Consts::$ROLE_USER)->count() > 0;
+		return $this->roles()->where('role_id', Consts::$ROLE_USER)->count() > 0;
+	}
+
+	public function fromDateTime($value)
+	{
+		return empty($value) ? $value :
+			substr(
+				$this->asDateTime($value)->format(
+					$this->getDateFormat()
+				),
+				0,
+				(strlen($this->asDateTime($value)->format(
+						$this->getDateFormat()
+					)) - 3));
+	}
+
+	public function conversation()
+	{
+		return $this->hasOne(Conversation::class, 'user_id', 'id');
+	}
 }

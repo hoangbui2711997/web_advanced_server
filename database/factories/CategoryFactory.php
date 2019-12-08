@@ -9,6 +9,5 @@ use Illuminate\Support\Str;
 $factory->define(Category::class, function (Faker $faker) {
     return [
         'name' => $name = $faker->unique()->name,
-        'slug' => Str::slug($name)
     ];
 });

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Custom\Passport\CustomToken;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Passport\Passport;
@@ -26,6 +27,10 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
         Passport::routes();
+        Passport::useTokenModel(CustomToken::class);
+        Gate::define('edit-settings', function ($user) {
+        	return $user;
+		});
 //        Passport::loadKeysFrom('./storage');
 
 //        Custom time expired for token

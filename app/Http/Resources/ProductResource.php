@@ -3,7 +3,6 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Support\Arr;
 
 class ProductResource extends JsonResource
 {
@@ -15,8 +14,11 @@ class ProductResource extends JsonResource
      */
     public function toArray($request)
     {
-        return array_merge(parent::toArray($request), [
-            'variations' => []
-        ]);
+//        return array_merge(parent::toArray($request), [
+//        	'price' => $this->formattedPrice,
+//            'variations' => ProductVariationResource::collection(
+//				$this->variations
+//			)->collection->groupBy('type.name')
+//        ]);
     }
 }

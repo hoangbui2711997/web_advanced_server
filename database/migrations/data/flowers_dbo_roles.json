@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "ADMIN",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 2,
+    "name": "MANAGER",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 3,
+    "name": "EMPLOYEE",
+    "created_at": null,
+    "updated_at": null
+  },
+  {
+    "id": 4,
+    "name": "USER",
+    "created_at": null,
+    "updated_at": null
+  }
+]

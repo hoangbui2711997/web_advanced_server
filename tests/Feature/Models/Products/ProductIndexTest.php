@@ -32,7 +32,7 @@ class ProductIndexTest extends TestCase
         echo $product;
         $this->json('GET', 'api/products')
             ->assertJsonStructure([
-                'meta'
+            	'data'
             ]);
 
 //        $response->assertStatus(200);
@@ -45,7 +45,7 @@ class ProductIndexTest extends TestCase
         $this->json('GET', "api/products/$product->slug")
             ->assertJsonStructure([
                 'data' => [
-                    'variations' => []
+                    'description' => []
                 ]
             ]);
     }

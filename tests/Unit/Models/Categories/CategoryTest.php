@@ -3,12 +3,13 @@
 namespace Tests\Unit\Models\Categories;
 
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class CategoryTest extends TestCase
 {
-    use RefreshDatabase;
+//    use RefreshDatabase;
     /**
      * A basic unit test example.
      *
@@ -44,4 +45,14 @@ class CategoryTest extends TestCase
 
         $this->assertEquals($category->name, Category::ordered('order')->first()->name);
     }
+
+	public function test_it_has_many_products()
+	{
+		$category = factory(Category::class)->create();
+		$category->products()->save(
+			factory(Product::class)->create()
+		);
+
+		$this->assertInstanceOf(Product::class, $category->products->first());
+	}
 }

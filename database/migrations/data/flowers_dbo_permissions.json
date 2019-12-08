@@ -1,0 +1,37 @@
+[
+	{
+		"id": 1,
+		"name": "UserManagement",
+		"path": "api/user-management",
+		"created_at": null,
+		"updated_at": null
+	},
+	{
+		"id": 2,
+		"name": "ProductManagement",
+		"path": "api/product-management",
+		"created_at": null,
+		"updated_at": null
+	},
+	{
+		"id": 3,
+		"name": "RoleManagement",
+		"path": "api/role-management",
+		"created_at": null,
+		"updated_at": null
+	},
+	{
+		"id": 4,
+		"name": "RouteManagement",
+		"path": "",
+		"created_at": null,
+		"updated_at": null
+	},
+	{
+		"id": 5,
+		"name": "ChatManagement",
+		"path": "api/chat-management",
+		"created_at": null,
+		"updated_at": null
+	}
+]
