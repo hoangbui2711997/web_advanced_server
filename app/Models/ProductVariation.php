@@ -10,6 +10,9 @@ class ProductVariation extends CustomModel
 {
 	use HasStorageInfo;
 	protected $with = ['vase', 'images'];
+	protected $casts = [
+		'rate' => 'float'
+	];
 
 	public function product(): \Illuminate\Database\Eloquent\Relations\BelongsTo
 	{

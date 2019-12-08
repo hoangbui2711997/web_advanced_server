@@ -17,18 +17,21 @@ class CreateInvoicesTable extends Migration
             $table->bigIncrements('id');
 			$table->decimal('service_fee', 30, 5);
 			$table->decimal('amount', 30, 5);
+			$table->timestamp('delivery_date');
+			$table->string('instruction');
 			$table->string('status');
 
 			$table->unsignedBigInteger('employee_id')->nullable();
 			$table->unsignedBigInteger('branch_id')->nullable();
 			$table->unsignedBigInteger('discount_id')->nullable();
-			$table->unsignedBigInteger('deliver_info_id')->nullable();
+			$table->unsignedBigInteger('address_book_id')->nullable();
+			$table->unsignedBigInteger('note_id')->nullable();
             $table->timestamps();
 
 			$table->foreign('employee_id')->references('id')->on('users');
 			$table->foreign('discount_id')->references('id')->on('discounts');
-			$table->foreign('deliver_info_id')->references('id')->on('deliver_infos');
 			$table->foreign('branch_id')->references('id')->on('branches');
+			$table->foreign('note_id')->references('id')->on('notes');
         });
     }
 

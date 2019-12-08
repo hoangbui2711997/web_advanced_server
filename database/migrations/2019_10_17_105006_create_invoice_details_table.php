@@ -15,20 +15,15 @@ class CreateInvoiceDetailsTable extends Migration
     {
         Schema::create('invoice_details', function (Blueprint $table) {
             $table->bigIncrements('id');
-			$table->string('type');
-			$table->decimal('price');
-			$table->unsignedSmallInteger('quantity');
-			$table->decimal('amount', 30);
+			$table->decimal('amount', 30, 2);
 
-			$table->unsignedBigInteger('foreign_id')->nullable();
 			$table->unsignedBigInteger('invoice_id')->nullable();
-			$table->unsignedBigInteger('note_id')->nullable();
-			$table->unsignedBigInteger('discount_id')->nullable();
-            $table->timestamps();
+			$table->unsignedBigInteger('product_in_cart_id')->nullable();
 
 			$table->foreign('invoice_id')->references('id')->on('invoices');
-			$table->foreign('note_id')->references('id')->on('notes');
-			$table->foreign('discount_id')->references('id')->on('discounts');
+			$table->foreign('product_in_cart_id')->references('id')->on('product_in_carts');
+
+            $table->timestamps();
         });
     }
 

@@ -22,6 +22,8 @@ class CreateAddressBooksTable extends Migration
 			$table->string('address_line_2');
 			$table->string('phone_number');
 			$table->string('email');
+			$table->string('city');
+			$table->string('province');
 
 			$table->unsignedBigInteger('user_id')->nullable();
 			$table->unsignedBigInteger('location_type_id')->nullable();

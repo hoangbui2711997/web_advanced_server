@@ -94,4 +94,9 @@ class User extends Authenticatable
 						$this->getDateFormat()
 					)) - 3));
 	}
+
+	public function conversation()
+	{
+		return $this->hasOne(Conversation::class, 'user_id', 'id');
+	}
 }

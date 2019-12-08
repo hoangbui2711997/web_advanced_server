@@ -2,18 +2,19 @@
 
 namespace App\Console\Commands;
 
+use App\Models\LocationType;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class MigratePermission extends Command
+class MigrateLocationType extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'custom:migrate:permission';
+    protected $signature = 'custom:migrate:location-type';
 
     /**
      * The console command description.
@@ -39,16 +40,18 @@ class MigratePermission extends Command
      */
     public function handle()
     {
-		$items = json_decode(file_get_contents(base_path() . '/database/migrations/data/flowers_dbo_permissions.json'));
-		$recordPermissions = [];
-		Log::warning(collect($items));
+		$strRaw = 'Home,Apartment,Company or Business,Hospital/Nursing Home,Funeral Home,Church';
+		$names = explode(',', $strRaw);
+		try {
+			DB::beginTransaction();
+			foreach ($names as $name) {
+				LocationType::insert(['type' => $name]);
+			}
 
-		foreach ($items as $item) {
-			$recordPermissions[] = [
-				'name' => $item->name,
-				'path' => $item->path
-			];
+			DB::commit();
+		} catch (\Exception $e) {
+			DB::rollBack();
+			Log::info($e);
 		}
-		DB::table('permissions')->insert($recordPermissions);
     }
 }

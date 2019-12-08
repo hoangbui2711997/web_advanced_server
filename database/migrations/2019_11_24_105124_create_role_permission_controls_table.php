@@ -18,6 +18,7 @@ class CreateRolePermissionControlsTable extends Migration
             $table->unsignedBigInteger('role_permission_id');
             $table->boolean('checked')->default(false);
             $table->string('name');
+            $table->foreign('role_permission_id')->references('id')->on('role_permissions');
             $table->timestamps();
         });
     }

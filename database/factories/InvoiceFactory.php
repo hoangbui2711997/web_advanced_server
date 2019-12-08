@@ -10,10 +10,11 @@ $factory->define(\App\Models\Invoice::class, function (Faker $faker) {
 		'service_fee' => $faker->randomDigit,
 		'amount' => $faker->randomDigit,
 		'status' => \App\Consts::$INVOICE_STATUSES[random_int(0, count(\App\Consts::$INVOICE_STATUSES) - 1)],
-		'employee_id' => \App\Models\User::orderByRaw(\Illuminate\Support\Facades\DB::raw('newid()'))->first()->id,
-		'branch_id' => \App\Models\Branch::orderByRaw(\Illuminate\Support\Facades\DB::raw('newid()'))->first()->id,
+		'delivery_date' => $faker->dateTime,
+		'instruction' => $faker->sentence(20),
+		'employee_id' => \App\Models\User::inRandomOrder()->first()->id,
+		'branch_id' => \App\Models\Branch::inRandomOrder()->first()->id,
 //		'discount_id' => \App\Models\Discount::orderByRaw(\Illuminate\Support\Facades\DB::raw('newid()'))->first()->id,
 		'discount_id' => (factory(\App\Models\Discount::class)->create())->id,
-		'deliver_info_id' => (factory(\App\Models\DeliverInfo::class)->create())->id,
 	];
 });

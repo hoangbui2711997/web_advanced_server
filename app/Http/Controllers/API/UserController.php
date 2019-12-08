@@ -7,6 +7,8 @@ use App\Http\Services\UserService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\ResponseFactory;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 
 class UserController extends Controller
@@ -50,7 +52,13 @@ class UserController extends Controller
 	 */
 	public function login(Request $request): JsonResponse
 	{
-		return $this->userService->login($request);
+		try {
+			DB::beginTransaction();
+			return $this->userService->login($request);
+		} catch (\Exception $e) {
+			DB::rollBack();
+			Log::info($e);
+		}
 	}
 
 	/**
@@ -96,5 +104,35 @@ class UserController extends Controller
 		} catch (\Exception $e) {
 			throw $e;
 		}
+	}
+
+	public function addAddressBook(Request $request)
+	{
+		try {
+			$this->userService->addAddressBook($request);
+		} catch (\Exception $e) {
+			throw $e;
+		}
+	}
+
+	public function getAddressBooks()
+	{
+		try {
+			return $this->userService->getAddressBooks();
+		} catch (\Exception $e) {
+			throw $e;
+		}
+	}
+
+	public function paymentCart()
+	{
+		return $this->userService->paymentCart();
+	}
+
+	public function getCurrentUser()
+	{
+		$user = \Auth::user();
+		$user->conversation;
+		return $user;
 	}
 }

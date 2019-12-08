@@ -4,10 +4,11 @@ namespace App\Models;
 
 use App\Custom\CustomModel;
 
-class LocationType extends CustomModel
+class UserConversation extends CustomModel
 {
     //
 	protected $fillable = [
-		'type'
+		'user_id',
+		'message'
 	];
 }

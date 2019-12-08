@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateNotesTable extends Migration
+class CreateCollectionFlowersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,12 @@ class CreateNotesTable extends Migration
      */
     public function up()
     {
-        Schema::create('notes', function (Blueprint $table) {
+        Schema::create('collection_flowers', function (Blueprint $table) {
             $table->bigIncrements('id');
-			$table->string('from_message');
-			$table->text('message');
-
-			$table->bigInteger('type_id')->unsigned();
+            $table->string('name');
+            $table->string('title');
+            $table->text('note');
             $table->timestamps();
-
-			$table->foreign('type_id')->references('id')->on('note_types');
         });
     }
 
@@ -32,6 +29,6 @@ class CreateNotesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('notes');
+        Schema::dropIfExists('collection_flowers');
     }
 }

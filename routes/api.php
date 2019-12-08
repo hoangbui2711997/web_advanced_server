@@ -17,12 +17,20 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'common'], function () {
 	Route::get('navigators', 'API\CommonController@getNavigators');
+	Route::get('locations', 'API\CommonController@getLocationTypes');
+	Route::get('zipcodes', 'API\CommonController@getZipcodes');
+	Route::get('note-types', 'API\CommonController@getNodeTypes');
+
 	Route::get('apis', 'API\CommonController@showAPIs');
 
 	Route::group(['prefix' => 'product'], function () {
 		Route::get('list', 'API\ProductController@index');
 		Route::get('{slug}', 'API\ProductController@getProduct');
 		Route::get('zipcode/{id}', 'API\ProductController@getZipcode');
+	});
+
+	Route::group(['prefix' => 'program'], function () {
+		Route::get('collection-products', 'API\ProgramController@getCollectionProduct');
 	});
 });
 
@@ -32,11 +40,23 @@ Route::group(['prefix' => 'user'], function () {
 	Route::post('signup', 'API\UserController@signup');
 	Route::post('signup/activate/{token}', 'API\UserController@signupActivate');
 	// ------------------------------------------------------------
-	Route::group(['middleware' => 'auth:api'], function() {
-		Route::group(['prefix' => 'cart'], function () {
-			Route::post('add', 'API\UserController@addToCart');
-			Route::get('info', 'API\UserController@getCartInfo');
-			Route::delete('product', 'Products\ProductController@removeProductInCart');
+	Route::group(['middleware' => 'auth:api'], function () {
+		Route::get('add-address-book', 'API\UserController@addAddressBook');
+		Route::get('address-books', 'API\UserController@getAddressBooks');
+		Route::get('payment', 'API\UserController@paymentCart');
+		Route::get('current', 'API\UserController@getCurrentUser');
+
+		Route::group(['prefix' => 'chat'], function () {
+			Route::get('messages', 'API\ChatController@getMessages');
+			Route::post('send-message', 'API\ChatController@sendMessage');
+		});
+
+		Route::group(['prefix' => 'checkout'], function () {
+			Route::group(['prefix' => 'cart'], function () {
+				Route::post('add', 'API\UserController@addToCart');
+				Route::get('info', 'API\UserController@getCartInfo');
+				Route::delete('product', 'Products\ProductController@removeProductInCart');
+			});
 		});
 
 		Route::group(['prefix' => 'password'], function () {

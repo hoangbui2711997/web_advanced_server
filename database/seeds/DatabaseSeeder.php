@@ -11,7 +11,8 @@ class DatabaseSeeder extends Seeder
 	 */
 	public function run()
 	{
-		$limit = 140;
+		$limit = 1400;
+//		$limit = 14;
 		factory(\App\Models\Product::class, $limit / 2)->create();
 		factory(\App\Models\ProductVariation::class, $limit / 2 * 3)->create();
 

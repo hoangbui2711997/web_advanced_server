@@ -31,6 +31,7 @@ class BuildApiResponse
 		if (!empty(data_get($original, 'exception'))) {
 			return response()->json(['error' => data_get($original, 'message')], $response->status());
 		}
+
 //
 //		if (!empty(data_get($original, 'errors'))) {
 //			return response()->json($original, $response->status());

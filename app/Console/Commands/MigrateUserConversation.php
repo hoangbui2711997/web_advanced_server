@@ -2,18 +2,17 @@
 
 namespace App\Console\Commands;
 
+use App\Models\UserConversation;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 
-class MigratePermission extends Command
+class MigrateUserConversation extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'custom:migrate:permission';
+    protected $signature = 'custom:migrate:user_conversation';
 
     /**
      * The console command description.
@@ -39,16 +38,6 @@ class MigratePermission extends Command
      */
     public function handle()
     {
-		$items = json_decode(file_get_contents(base_path() . '/database/migrations/data/flowers_dbo_permissions.json'));
-		$recordPermissions = [];
-		Log::warning(collect($items));
-
-		foreach ($items as $item) {
-			$recordPermissions[] = [
-				'name' => $item->name,
-				'path' => $item->path
-			];
-		}
-		DB::table('permissions')->insert($recordPermissions);
+        factory(UserConversation::class, 10000)->create();
     }
 }

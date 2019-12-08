@@ -38,6 +38,6 @@ class MigrateInvoice extends Command
      */
     public function handle()
     {
-        factory(Invoice::class, 2000)->create();
+        factory(Invoice::class, 10)->create();
     }
 }

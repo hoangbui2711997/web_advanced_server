@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Services\CommonService;
+use Illuminate\Http\Request;
 
 class CommonController extends Controller
 {
@@ -59,6 +60,31 @@ class CommonController extends Controller
 
 	public function showAPIs()
 	{
-		$this->commonService->showAPIs();
+		return $this->commonService->showAPIs();
+	}
+
+	public function getLocationTypes()
+	{
+		return $this->commonService->getLocationTypes();
+	}
+
+	public function getCities(Request $request)
+	{
+		return $this->commonService->getCities();
+	}
+
+	public function getProvinces(Request $request)
+	{
+		return $this->commonService->getProvinces();
+	}
+
+	public function getZipcodes(Request $request)
+	{
+		return $this->commonService->getZipcodes($request->all());
+	}
+
+	public function getNodeTypes(Request $request)
+	{
+		return $this->commonService->getNodeTypes($request->all());
 	}
 }
