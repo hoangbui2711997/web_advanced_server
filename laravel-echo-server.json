@@ -1,5 +1,5 @@
 {
-	"authHost": "http://localhost",
+	"authHost": "http://ec2-52-68-200-45.ap-northeast-1.compute.amazonaws.com/",
 	"authEndpoint": "/broadcasting/auth",
 	"clients": [
 		{
@@ -9,14 +9,14 @@
 	],
 	"database": "redis",
 	"databaseConfig": {
-		"redis": {},
+		"redis": { "host": "localhost", "port": 6379 },
 		"sqlite": {
 			"databasePath": "/database/laravel-echo-server.sqlite"
 		}
 	},
 	"devMode": true,
 	"host": null,
-	"port": "6002",
+	"port": "6001",
 	"protocol": "http",
 	"socketio": {},
 	"secureOptions": 67108864,
@@ -30,7 +30,7 @@
 	},
 	"apiOriginAllow": {
 		"allowCors": true,
-		"allowOrigin": "http://localhost:8000",
+		"allowOrigin": "http://ec2-52-68-200-45.ap-northeast-1.compute.amazonaws.com:2000",
 		"allowMethods": "GET, POST",
 		"allowHeaders": "Origin, Content-Type, X-Auth-Token, X-Requested-With, Accept, Authorization, X-CSRF-TOKEN, X-Socket-Id"
 	}
