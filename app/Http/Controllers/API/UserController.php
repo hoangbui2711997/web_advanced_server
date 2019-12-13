@@ -46,11 +46,8 @@ class UserController extends Controller
 
 	/**
 	 * Login user and create token
-	 *
-	 * @param Request $request
-	 * @return JsonResponse [string] access_token
 	 */
-	public function login(Request $request): JsonResponse
+	public function login(Request $request)
 	{
 		try {
 			DB::beginTransaction();
