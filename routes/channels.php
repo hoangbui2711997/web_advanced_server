@@ -14,3 +14,9 @@
 Broadcast::channel('App.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });
+
+Broadcast::channel('App.Chat.{conversationId}', function ($user, $conversationId) {
+    return true;
+//    return \App\Models\Conversation::where('pairing_with', $user->id)->where('id', $conversationId)->count() > 0;
+//    return (int) $user->id;
+});
